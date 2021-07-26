@@ -3,21 +3,18 @@
 void	ft_handler(int signal)
 {
 	static int	len = 0;
-	static	int	i = 0;
-	char		c;
+	static	char c = 0;
 
 	if (signal == SIGUSR1)
-		i |= (1 << len++); // j'affecte 1 au bit du rang len
-	if (signal == SIGUSR2)
-		i |= (0 << len++); // j'affecte un 0 au bit du rang len
+		c |= (1 << len); // j'affecte 1 au bit du rang len
+	len++;
 	if (len == 8)
 	{
-		c = (char)i;
+		write(1, &c, 1);
 		if (c == '\0')
 			write(1, "\n", 1);
-		write(1, &c, 1);
 		len = 0;
-		i = 0;
+		c = 0;
 	}
 }
 

@@ -3,24 +3,24 @@
 
 void  send_signal(int pid, int c)
 {
-   int   i = 0;
+   int   j;
    int  ret;
  
-   while (i < 8)
-   {
-     usleep(100);
-     if (c % 2 == 1)
-       ret = kill (pid, SIGUSR1); // envoi du signal SIGUSR1 au processus pid donc au serveur
-     else if (c % 2 == 0)
-       ret = kill (pid, SIGUSR2); // envoi du signal SIGUSR2 au processus pid donc au serveur
-      if (ret == -1)
-      {
-        ft_putstr_fd("error kill return", 2);
-        exit (EXIT_FAILURE);
-      }
-     i++;
-     c /= 2;
-   }
+	j = 0;
+	while (j < 8)
+   	{
+    	usleep(75);
+		if (c & (1 << j))
+		ret = kill (pid, SIGUSR1); // envoi du signal SIGUSR1 au processus pid donc au serveur
+		else
+		ret = kill (pid, SIGUSR2); // envoi du signal SIGUSR2 au processus pid donc au serveur
+		if (ret == -1)
+		{
+			ft_putstr_fd("error kill return", 2);
+			exit (EXIT_FAILURE);
+		}
+		j++;
+   	}
 }
 
 int main(int argc, char **argv)
