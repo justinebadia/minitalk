@@ -1,5 +1,16 @@
-#include "utils_bonus.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbadia <jbadia@student.42quebec.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/27 14:29:40 by jbadia            #+#    #+#             */
+/*   Updated: 2021/07/27 15:05:10 by jbadia           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "utils_bonus.h"
 
 int	ft_atoi(const char *str)
 {
@@ -62,4 +73,10 @@ void	ft_putstr_fd(char *s, int fd)
 		write (fd, &s[i], 1);
 		i++;
 	}
+}
+
+void	error_msg(char *str)
+{
+	ft_putstr_fd(str, 2);
+	exit(EXIT_FAILURE);
 }
